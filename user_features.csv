@@ -1,101 +1,101 @@
 Age,Sex,Location,NonVeg,user_guid
-55,F,Maharashtra,2,500
-73,F,Maharashtra,1,501
-43,F,Maharashtra,0,502
-30,M,Maharashtra,2,503
-35,F,Jammu & Kashmir,1,504
-55,M,South India,0,505
-61,M,Punjab & Haryana,1,506
-34,F,Maharashtra,1,507
-56,M,Punjab & Haryana,1,508
-64,M,Jammu & Kashmir,0,509
-33,M,Rajasthan,2,510
-32,F,Maharashtra,1,511
-53,F,Maharashtra,0,512
-42,M,Rajasthan,2,513
-60,M,Punjab & Haryana,1,514
-74,M,Punjab & Haryana,2,515
-31,F,Rajasthan,1,516
-79,F,South India,0,517
-45,M,Rajasthan,0,518
-49,M,Jammu & Kashmir,0,519
-34,M,Maharashtra,0,520
-91,M,Jammu & Kashmir,0,521
-26,F,Maharashtra,0,522
-15,F,Jammu & Kashmir,0,523
-60,M,Rajasthan,1,524
-13,F,Rajasthan,1,525
-5,M,Jammu & Kashmir,1,526
-6,M,South India,1,527
-96,F,Jammu & Kashmir,1,528
-38,M,Punjab & Haryana,2,529
-53,F,Maharashtra,0,530
-10,F,Maharashtra,0,531
-61,M,Rajasthan,2,532
-26,M,Maharashtra,2,533
-21,M,Punjab & Haryana,2,534
-71,M,Rajasthan,2,535
-20,M,Jammu & Kashmir,0,536
-22,M,Punjab & Haryana,0,537
-53,F,South India,1,538
-73,M,Jammu & Kashmir,2,539
-74,F,Maharashtra,1,540
-88,F,South India,0,541
-8,M,Punjab & Haryana,1,542
-40,M,Punjab & Haryana,2,543
-12,F,Jammu & Kashmir,0,544
-34,F,Punjab & Haryana,1,545
-5,F,South India,2,546
-60,F,Rajasthan,1,547
-14,M,Jammu & Kashmir,1,548
-15,F,Maharashtra,0,549
-30,F,Jammu & Kashmir,2,550
-56,F,Jammu & Kashmir,2,551
-73,F,Rajasthan,1,552
-98,M,South India,0,553
-23,F,Rajasthan,0,554
-62,M,Punjab & Haryana,1,555
-70,M,Jammu & Kashmir,2,556
-29,F,Jammu & Kashmir,1,557
-93,M,Punjab & Haryana,0,558
-87,F,South India,1,559
-44,F,South India,0,560
-48,M,Punjab & Haryana,2,561
-7,M,Rajasthan,2,562
-20,M,South India,2,563
-87,F,South India,1,564
-91,F,South India,2,565
-30,F,Jammu & Kashmir,2,566
-78,M,Jammu & Kashmir,0,567
-98,M,South India,2,568
-56,F,South India,0,569
-59,F,Jammu & Kashmir,2,570
-6,F,Maharashtra,1,571
-35,M,Maharashtra,2,572
-16,M,Rajasthan,0,573
-99,F,Jammu & Kashmir,1,574
-5,M,Maharashtra,1,575
-6,F,Rajasthan,2,576
-57,M,Maharashtra,1,577
-10,M,Jammu & Kashmir,2,578
-80,M,Maharashtra,2,579
-78,F,Punjab & Haryana,2,580
-72,M,Maharashtra,0,581
-89,M,Jammu & Kashmir,1,582
-45,F,Punjab & Haryana,2,583
-56,F,Rajasthan,1,584
-80,F,Jammu & Kashmir,1,585
-73,F,Rajasthan,0,586
-12,F,Punjab & Haryana,2,587
-85,M,South India,0,588
-20,F,South India,1,589
-34,M,Punjab & Haryana,0,590
-82,F,South India,2,591
-52,F,Maharashtra,2,592
-16,M,Maharashtra,1,593
-56,M,South India,2,594
-88,F,Punjab & Haryana,0,595
-78,M,Maharashtra,1,596
-18,F,Jammu & Kashmir,2,597
-85,M,Maharashtra,0,598
-86,F,Maharashtra,1,599
+26,F,Jammu & Kashmir,1,500
+33,F,Punjab & Haryana,0,501
+93,M,South India,0,502
+73,F,South India,1,503
+95,F,Jammu & Kashmir,0,504
+39,M,Punjab & Haryana,1,505
+59,F,Rajasthan,1,506
+55,M,Punjab & Haryana,1,507
+99,F,Rajasthan,0,508
+83,M,Punjab & Haryana,0,509
+25,M,Rajasthan,1,510
+58,M,Punjab & Haryana,0,511
+16,M,Rajasthan,0,512
+12,F,Jammu & Kashmir,1,513
+8,M,Punjab & Haryana,0,514
+89,F,Rajasthan,1,515
+54,F,South India,0,516
+8,M,Punjab & Haryana,0,517
+55,M,Punjab & Haryana,1,518
+72,F,South India,1,519
+72,F,Rajasthan,0,520
+5,F,Rajasthan,1,521
+29,M,Jammu & Kashmir,0,522
+69,F,Maharashtra,0,523
+53,F,Jammu & Kashmir,1,524
+46,F,Punjab & Haryana,0,525
+58,M,Rajasthan,0,526
+80,F,Jammu & Kashmir,1,527
+8,F,Maharashtra,0,528
+57,M,Punjab & Haryana,1,529
+10,F,Rajasthan,0,530
+52,F,Rajasthan,1,531
+7,M,Rajasthan,1,532
+27,F,Maharashtra,1,533
+98,M,South India,1,534
+19,F,Maharashtra,1,535
+10,F,Rajasthan,0,536
+98,M,Maharashtra,0,537
+77,M,Punjab & Haryana,0,538
+52,M,Rajasthan,0,539
+22,F,South India,1,540
+17,F,South India,0,541
+12,M,South India,0,542
+72,M,Punjab & Haryana,1,543
+9,F,Rajasthan,0,544
+35,F,Rajasthan,1,545
+52,M,Rajasthan,1,546
+11,M,Maharashtra,0,547
+39,M,Rajasthan,1,548
+93,M,South India,0,549
+66,F,Punjab & Haryana,1,550
+75,F,Rajasthan,0,551
+48,M,Punjab & Haryana,0,552
+61,M,Punjab & Haryana,0,553
+93,M,Rajasthan,1,554
+98,M,Punjab & Haryana,1,555
+26,M,Rajasthan,1,556
+57,M,Jammu & Kashmir,0,557
+90,F,Jammu & Kashmir,0,558
+31,F,South India,0,559
+62,M,Jammu & Kashmir,0,560
+18,M,Maharashtra,0,561
+33,M,South India,0,562
+56,F,Jammu & Kashmir,0,563
+12,M,South India,0,564
+47,F,South India,0,565
+57,M,Rajasthan,0,566
+96,F,Punjab & Haryana,1,567
+23,F,Maharashtra,1,568
+6,M,South India,0,569
+21,F,Punjab & Haryana,0,570
+92,F,Maharashtra,1,571
+99,F,Jammu & Kashmir,0,572
+79,F,South India,0,573
+6,F,South India,0,574
+36,F,Punjab & Haryana,0,575
+7,M,South India,0,576
+35,F,Jammu & Kashmir,0,577
+24,M,Rajasthan,0,578
+9,M,Rajasthan,1,579
+33,M,Rajasthan,0,580
+26,M,Punjab & Haryana,0,581
+65,F,South India,1,582
+9,M,Rajasthan,0,583
+14,M,South India,1,584
+51,F,South India,1,585
+78,M,Maharashtra,0,586
+7,M,Maharashtra,0,587
+66,M,Punjab & Haryana,1,588
+15,M,Punjab & Haryana,0,589
+37,F,Maharashtra,0,590
+40,M,South India,0,591
+21,F,South India,1,592
+63,F,Rajasthan,1,593
+71,M,Maharashtra,0,594
+6,F,Jammu & Kashmir,1,595
+49,M,Rajasthan,1,596
+28,M,Maharashtra,1,597
+97,F,Jammu & Kashmir,1,598
+19,F,Jammu & Kashmir,0,599
