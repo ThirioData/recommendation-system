@@ -51,14 +51,34 @@ user_feat  = user_feat.replace({"Location":l_dict})
 new_user_feat = pd.read_csv('new_user_feat.csv')
 
 
+new_user = input('press 1 to add new user, 0 to continue with existing user')
+if(new_user==1):
+    
+
 next_day = 1;
 
 while next_day :
     entry = input('type 1 if you want users recommendation or type 0 if it is next_day')
 
     if entry==1:
-        user_id = input('enter the user_id')
-        recommendation = main_recommend.main_recommendation(new_user_feat,user_feat,user_id)
+        user_id = input('enter the user_id ')
+        indexer = np.where(new_user_feat['user_guid']==user_id)[0]
+        indexer = indexer[0]
+        new_meal_size = main_recommend.main_recommendation(new_user_feat,user_feat,user_id)
+        print new_meal_size
+        order = input('enter the dish number to order ')
+        print ('your previous meal size was '+str(user_feat.loc[indexer,'previous_meal_size']))
+        print ('previous meal rating was '+str(user_feat.loc[indexer,'meal_size_rating'])+' so based on that your todays meal size is '+str(new_meal_size))
+        user_feat.loc[indexer,'previous_meal_size'] = new_meal_size
+        #print (spice_feat.loc[order,'count'])
+        ## increase count of the ordered dish
+        spice_feat.loc[order,'count'] = spice_feat.loc[order,'count']+1
+        print ('your dish is ordered')
+        # take feedback
+        taste_rate = input('please give rating on the basis of taste. 0 = bad, 1 = fine, 2 = good')
+        quantity_rate = input('please give rating on the basis of quantity. 0 = was less, 1 = satisfied, 2 = leftover')
+        #update feedback
+        user_feat.loc[indexer,'meal_size_rating'] = quantity_rate
         
     elif entry == 0:
         main_recommend.change_recommendation(user_feat,spice_feat,new_user_feat)

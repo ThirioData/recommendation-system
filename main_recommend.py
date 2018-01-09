@@ -7,6 +7,8 @@ import ast
 import itertools
 import random
 from random import randint
+spice_feat = pd.read_excel('test4.xls')
+spice_feat = spice_feat.iloc[:,:7]
 def clustering_based(user_feat):    
     kmeans = KMeans(n_clusters = 5,random_state=0).fit(user_feat)
     user_feat['label'] = kmeans.labels_
@@ -178,8 +180,24 @@ def next_day_recommendation(user_feat,new_user_feat,spice_feat):        #,user_r
 def main_recommendation(new_user_feat,user_feat,user_id):      #,user_rating):
    
     index = np.where(new_user_feat['user_guid']==user_id)[0]
+    
+    
+    
+    x =  new_user_feat.loc[index[0],'recommends']
         
-    print new_user_feat.loc[index[0],'recommends']
+        
+    if isinstance(x,basestring):
+        x = ast.literal_eval(x)   
+    
+    temp_list =  x#list(itertools.chain.from_iterable(x))
+    
+        
+        
+    
+    dish1 = spice_feat.loc[temp_list[0],'Dish']
+    dish2 = spice_feat.loc[temp_list[1],'Dish']
+    dish3 = spice_feat.loc[temp_list[2],'Dish']
+    print (str(temp_list[0])+' = '+dish1+','+str(temp_list[1])+'='+dish2+','+str(temp_list[2])+'='+dish3)
         
     previous_rating = user_feat.loc[index[0],'meal_size_rating']
     previous_size = user_feat.loc[index[0],'previous_meal_size']
@@ -192,7 +210,8 @@ def main_recommendation(new_user_feat,user_feat,user_id):      #,user_rating):
         
         
     #meal_type = input('enter the meal type(0,1,2,3)')
-    print ("new meal size "+str(next_meal_size))
+    
+    return next_meal_size
 
 def change_recommendation(user_feat,spice_feat,new_user_feat):
     new_user_feat = next_day_recommendation(user_feat,new_user_feat,spice_feat)
