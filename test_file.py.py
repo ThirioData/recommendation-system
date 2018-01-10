@@ -12,15 +12,14 @@ user_feat = pd.read_csv('user_features.csv')
 user_feat['Calories'] = np.random.randint(150,500, size=len(user_feat))
 user_feat['meal_size_rating'] = pd.DataFrame(np.random.randint(0,3, size = (len(user_feat),1)))
 user_feat['previous_meal_size'] = pd.DataFrame(np.random.randint(0,3, size = (len(user_feat),1)))
-user_feat.to_csv('user_features.csv',encoding='utf-8',index=False)
 
 
 spice_feat = pd.read_excel('test4.xls')
 spice_feat = spice_feat.iloc[:,:7]
 #print spice_feat
 #food user rating table
-food_user = pd.DataFrame(np.random.randint(low=0, high=2, size=(len(spice_feat),len(user_feat))),columns=user_feat.user_guid)
-food_user.index  =  spice_feat['food_id']
+#food_user = pd.DataFrame(np.random.randint(low=0, high=2, size=(len(spice_feat),len(user_feat))),columns=user_feat.user_guid)
+#food_user.index  =  spice_feat['food_id']
 
 def nor_age(age):
     
@@ -42,17 +41,17 @@ def nor_age(age):
         return 8
     
     
-
+new_user_feat = pd.read_csv('new_user_feat.csv')
 
 def user_feat_preprocess(user_feat):
     s_dict = {"M":1,"F":5 }
-    l_dict = {'Jammu & Kashmir':2, 'Punjab & Haryana':5, 'Rajasthan':8, 'Maharashtra':10, 'South India':15}
+    #l_dict = {'Jammu & Kashmir':2, 'Punjab & Haryana':5, 'Rajasthan':8, 'Maharashtra':10, 'South India':15}
     user_feat['Age'] = user_feat['Age'].apply(nor_age)
     user_feat  = user_feat.replace({"Sex":s_dict})
     user_feat  = user_feat.replace({"Location":l_dict})
     return user_feat
-user_feat1 = pd.read_csv('user_features.csv')
-user_feat = user_feat_preprocess(user_feat1)
+#user_feat1 = pd.read_csv('user_features.csv')
+user_feat = user_feat_preprocess(user_feat)
 
 new_user_feat = pd.read_csv('new_user_feat.csv')
 
@@ -60,33 +59,41 @@ def generate_id(user_guid_list):
     return max(user_guid_list)+1
     
 new_user = input('press 1 to add new user, 0 to continue with existing user')
-if(new_user==1):
+while(new_user):
     user_guid = generate_id(user_feat['user_guid'])
-    user_name = input('enter the name ')
+    user_name = raw_input('enter the name ')
     age = input('enter the age ')
-    sex = input('gender ')
-    loc = input('State u belongs to ')
+    sex = raw_input('gender M or F ')
+    loc = raw_input('State u belongs to(Jammu & Kashmir:2, Punjab & Haryana:5, Rajasthan:8, Maharashtra:10, South India:15) ')
     nonveg = input('type1 for veg or 0 for non-veg/veg')
-    #to be change later according to teh formula
+    #to be change later according to the formula
     calories = 300
     size = input('press 1 if you have any preference meal size?')
     meal_size_rating=1
     if(size==1):
         meal_size_rating = input('enter the meal size,0 for small ,1 for medium,2 for large')
     previous_meal_size = meal_size_rating  
-    df = pd.DataFrame([[age,sex,loc,nonveg,user_guid,calories,meal_size_rating,previous_meal_size],columns=['Age','Sex','Location','NonVeg','user_guid','Calories','meal_size_rating','previous_meal_size']]
-                      
-    user_feat = pd.concat([user_feat1,df])
+    df = pd.DataFrame([[age,calories,loc,nonveg,sex,meal_size_rating,previous_meal_size,user_guid]],columns=['Age','Calories','Location','NonVeg','Sex','meal_size_rating','previous_meal_size','user_guid'])
+    
+    print user_feat
+    
+    df = user_feat_preprocess(df) 
+    print df
+    user_feat = pd.concat([user_feat,df],ignore_index=True)
     user_feat.to_csv('user_features.csv',encoding='utf-8',index=False)
-    user_feat1 = pd.read_csv('user_features.csv')
-    user_feat = user_feat_preprocess(user_feat1) 
-   
+    #user_feat1 = pd.read_csv('user_features.csv')
+    #user_feat = user_feat_preprocess(user_feat1) 
+    new_user = input('press 1 to add another new user, 0 to continue with existing users')
+
 
 next_day = 1;
 
+    
+print user_feat
+
 while next_day :
-    entry = input('type 1 if you want users recommendation or type 0 if it is next_day')   
-                        
+    entry = input('type 1 if you want users recommendation or type 0 if it is next_day')
+
     if entry==1:
         user_id = input('enter the user_id ')
         indexer = np.where(new_user_feat['user_guid']==user_id)[0]
