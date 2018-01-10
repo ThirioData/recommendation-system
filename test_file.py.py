@@ -40,12 +40,10 @@ def nor_age(age):
     else:
         return 8
     
-    
-new_user_feat = pd.read_csv('new_user_feat.csv')
 
 def user_feat_preprocess(user_feat):
     s_dict = {"M":1,"F":5 }
-    #l_dict = {'Jammu & Kashmir':2, 'Punjab & Haryana':5, 'Rajasthan':8, 'Maharashtra':10, 'South India':15}
+    l_dict = {'Jammu & Kashmir':2, 'Punjab & Haryana':5, 'Rajasthan':8, 'Maharashtra':10, 'South India':15}
     user_feat['Age'] = user_feat['Age'].apply(nor_age)
     user_feat  = user_feat.replace({"Sex":s_dict})
     user_feat  = user_feat.replace({"Location":l_dict})
@@ -75,21 +73,30 @@ while(new_user):
     previous_meal_size = meal_size_rating  
     df = pd.DataFrame([[age,calories,loc,nonveg,sex,meal_size_rating,previous_meal_size,user_guid]],columns=['Age','Calories','Location','NonVeg','Sex','meal_size_rating','previous_meal_size','user_guid'])
     
-    print user_feat
+    #print user_feat
     
     df = user_feat_preprocess(df) 
-    print df
+    #print df
     user_feat = pd.concat([user_feat,df],ignore_index=True)
+    print user_feat
     user_feat.to_csv('user_features.csv',encoding='utf-8',index=False)
     #user_feat1 = pd.read_csv('user_features.csv')
     #user_feat = user_feat_preprocess(user_feat1) 
+    
+    last5ayreco = [[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]]
+    recom = [0,0,0]
+    pastorder = pd.DataFrame([[user_guid,last5ayreco,last5ayreco,recom,recom,[0,0,0,0,0,0,0]]],columns=['user_guid','last_5_days_recommend','last_5_days_bought','recommends','bought','not_recommended'])
+    new_user_feat = pd.concat([new_user_feat,pastorder],ignore_index=True)
+    print new_user_feat
+    new_user_feat.to_csv('new_user_feat.csv',encoding='utf-8',index=False)
+    
     new_user = input('press 1 to add another new user, 0 to continue with existing users')
+    
 
 
 next_day = 1;
 
     
-print user_feat
 
 while next_day :
     entry = input('type 1 if you want users recommendation or type 0 if it is next_day')
