@@ -9,9 +9,9 @@ import main_recommend
 user_feat = pd.read_csv('user_features.csv')
 
 
-user_feat['Calories'] = np.random.randint(150,500, size=len(user_feat))
-user_feat['meal_size_rating'] = pd.DataFrame(np.random.randint(0,3, size = (len(user_feat),1)))
-user_feat['previous_meal_size'] = pd.DataFrame(np.random.randint(0,3, size = (len(user_feat),1)))
+#user_feat['Calories'] = np.random.randint(150,500, size=len(user_feat))
+#user_feat['meal_size_rating'] = pd.DataFrame(np.random.randint(0,3, size = (len(user_feat),1)))
+#user_feat['previous_meal_size'] = pd.DataFrame(np.random.randint(0,3, size = (len(user_feat),1)))
 
 
 spice_feat = pd.read_excel('test4.xls')
@@ -51,7 +51,7 @@ def user_feat_preprocess(user_feat):
     user_feat  = user_feat.replace({"Location":l_dict})
     return user_feat
 #user_feat1 = pd.read_csv('user_features.csv')
-user_feat = user_feat_preprocess(user_feat)
+#user_feat = user_feat_preprocess(user_feat)
 
 new_user_feat = pd.read_csv('new_user_feat.csv')
 
