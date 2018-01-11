@@ -62,14 +62,14 @@ while(new_user):
     user_name = raw_input('enter the name ')
     age = input('enter the age ')
     sex = raw_input('gender M or F ')
-    loc = raw_input('State u belongs to(Jammu & Kashmir:2, Punjab & Haryana:5, Rajasthan:8, Maharashtra:10, South India:15) ')
-    nonveg = input('type1 for veg or 0 for non-veg/veg')
+    loc = raw_input('State you belongs to : pick one(Jammu & Kashmir, Punjab & Haryana, Rajasthan, Maharashtra, South India)(enter correct name) ')
+    nonveg = input('type 0 for veg and 1 for non-veg/veg')
     #to be change later according to the formula
     calories = 300
-    size = input('press 1 if you have any preference meal size?')
+    #size = input('press 1 if you have any preference meal size?')
     meal_size_rating=1
-    if(size==1):
-        meal_size_rating = input('enter the meal size,0 for small ,1 for medium,2 for large')
+    #if(size==1):
+    #   meal_size_rating = input('enter the meal size,0 for small ,1 for medium,2 for large')
     previous_meal_size = meal_size_rating  
     df = pd.DataFrame([[age,calories,loc,nonveg,sex,meal_size_rating,previous_meal_size,user_guid]],columns=['Age','Calories','Location','NonVeg','Sex','meal_size_rating','previous_meal_size','user_guid'])
     
@@ -78,7 +78,7 @@ while(new_user):
     df = user_feat_preprocess(df) 
     #print df
     user_feat = pd.concat([user_feat,df],ignore_index=True)
-    print user_feat
+    #print user_feat
     user_feat.to_csv('user_features.csv',encoding='utf-8',index=False)
     #user_feat1 = pd.read_csv('user_features.csv')
     #user_feat = user_feat_preprocess(user_feat1) 
@@ -87,9 +87,9 @@ while(new_user):
     recom = [0,0,0]
     pastorder = pd.DataFrame([[user_guid,last5ayreco,last5ayreco,recom,recom,[0,0,0,0,0,0,0]]],columns=['user_guid','last_5_days_recommend','last_5_days_bought','recommends','bought','not_recommended'])
     new_user_feat = pd.concat([new_user_feat,pastorder],ignore_index=True)
-    print new_user_feat
+    #print new_user_feat
     new_user_feat.to_csv('new_user_feat.csv',encoding='utf-8',index=False)
-    
+    print (user_name+" user is created")
     new_user = input('press 1 to add another new user, 0 to continue with existing users')
     
 
@@ -106,27 +106,41 @@ while next_day :
         indexer = np.where(new_user_feat['user_guid']==user_id)[0]
         indexer = indexer[0]
         new_meal_size = main_recommend.main_recommendation(new_user_feat,user_feat,user_id)
-        print new_meal_size
-        order = input('enter the dish number to order ')
+        #print new_meal_size
+        order = input('enter the dish number to order(only number not name) ')
         print ('your previous meal size was '+str(user_feat.loc[indexer,'previous_meal_size']))
-        print ('previous meal rating was '+str(user_feat.loc[indexer,'meal_size_rating'])+' so based on that your todays meal size is '+str(new_meal_size))
+        print ('rating of the previous meal was '+str(user_feat.loc[indexer,'meal_size_rating'])+' so based on that your todays meal size will be '+str(new_meal_size))
         user_feat.loc[indexer,'previous_meal_size'] = new_meal_size
         #print (spice_feat.loc[order,'count'])
         ## increase count of the ordered dish
         spice_feat.loc[order,'count'] = spice_feat.loc[order,'count']+1
+
+        qwe = new_user_feat.iloc[indexer]['bought']
+
+        if isinstance(qwe,basestring):
+            qwe = ast.literal_eval(qwe)   
+            temp_listy =  qwe
+        temp_listy.append(order)
+
+        temp_listy = str(temp_listy)
+        new_user_feat.at[indexer, 'bought'] = temp_listy
+        new_user_feat.to_csv('new_user_feat.csv',encoding='utf-8',index=False)
+
         print ('your dish is ordered')
         # take feedback
-        taste_rate = input('please give rating on the basis of taste. 0 = bad, 1 = fine, 2 = good')
-        quantity_rate = input('please give rating on the basis of quantity. 0 = was less, 1 = satisfied, 2 = leftover')
+        taste_rate = input('please give rating on the basis of taste. 0 = bad, 1 = fine, 2 = good ')
+        quantity_rate = input('please give rating on the basis of quantity. 0 = was less, 1 = satisfied, 2 = leftover ')
         #update feedback
         user_feat.loc[indexer,'meal_size_rating'] = quantity_rate
+        user_feat.to_csv('user_features.csv',encoding='utf-8',index=False)
         
     elif entry == 0:
         main_recommend.change_recommendation(user_feat,spice_feat,new_user_feat)
+        print ("table updated to next day")
     else:
         print 'wrong entry try again'
 
-    again = input('want to try again,press 1 else quit')
+    again = input('want to try again,press 1 else any other number to quit ')
     if again == 1:
         next_day = 1;
 
