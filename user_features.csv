@@ -100,3 +100,4 @@ Age,Calories,Location,NonVeg,Sex,meal_size_rating,previous_meal_size,user_guid
 3,410,8,1,1,2,0,598
 8,287,10,0,1,0,0,599
 3,300,8,1,1,1,1,600
+3,300,8,0,1,1,1,601

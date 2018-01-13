@@ -56,7 +56,12 @@ new_user_feat = pd.read_csv('new_user_feat.csv')
 def generate_id(user_guid_list):
     return max(user_guid_list)+1
     
-new_user = input('press 1 to add new user, 0 to continue with existing user')
+
+while(1):
+    new_user = input('press 1 to add new user, 0 to continue with existing user')
+    if(new_user==0 or new_user==1):
+        break
+    print "enter 0 or 1 only"    
 while(new_user):
     user_guid = generate_id(user_feat['user_guid'])
     user_name = raw_input('enter the name ')
@@ -68,16 +73,24 @@ while(new_user):
         print "age should be in between 5 to 120 years"    
     while(1):        
         sex = raw_input('gender M or F ')
-        if(sex == 'M' or sex == 'F):
-           break
+        if(sex == 'M' or sex == 'F'):
+            break
         print "sex should be in M or F"
            
     #this should come as dropdown menu      
-    loc = raw_input('State you belongs to : pick one(Jammu & Kashmir, Punjab & Haryana, Rajasthan, Maharashtra, South India)(enter correct name) ')
+    
+    while(1):
+        loc = raw_input('State you belongs to : pick one,write full name(Jammu & Kashmir, Punjab & Haryana, Rajasthan, Maharashtra, South India) ')
+        if(loc=='Jammu & Kashmir' or loc=='Punjab & Haryana' or loc=='Rajasthan' or loc=='Maharashtra' or loc=='South India'):
+            break
+        print ("location does not exist in the database, try again")
+    
+    
+    
     while(1):
         nonveg = input('type 0 for veg and 1 for both non-veg and veg')
         if nonveg == 0 or nonveg == 1:
-           break
+            break
         print 'enter correct value'
            
     #to be change later according to the formula
@@ -107,20 +120,22 @@ while(new_user):
     new_user_feat.to_csv('new_user_feat.csv',encoding='utf-8',index=False)
     print (user_name+" user is created")
     new_user = input('press 1 to add another new user, 0 to continue with existing users')
-    
-
+    #test
 
 next_day = 1;
 
-    
-
 while next_day :
-    entry = input('type 1 if you want users recommendation or type 0 if it is next_day')
+    while(1):
+        entry = input('type 1 if you want users recommendation or type 0 if it is next_day')
+        if entry==0 or entry==1:
+            break
+        print ("enter 0 or 1 only")
 
     if entry==1:
-        user_id = input('enter the user_id ')
-        if user_id not in (new_user_feat['user_guid']):
-            print "enter the correct user_id"
+        #user_id = input('enter the user_id ')
+        print new_user_feat['user_guid'].values
+        if user_id not in (new_user_feat['user_guid'].values):
+            print ("enter the correct user_id between 500 and "+str(500-2+len(new_user_feat['user_guid'])))
             continue
             
         indexer = np.where(new_user_feat['user_guid']==user_id)[0]
