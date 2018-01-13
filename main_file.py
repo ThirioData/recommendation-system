@@ -60,10 +60,26 @@ new_user = input('press 1 to add new user, 0 to continue with existing user')
 while(new_user):
     user_guid = generate_id(user_feat['user_guid'])
     user_name = raw_input('enter the name ')
-    age = input('enter the age ')
-    sex = raw_input('gender M or F ')
+    
+    while(1):
+        age = input('enter the age ')
+        if(age>5 and age<120):
+            break
+        print "age should be in between 5 to 120 years"    
+    while(1):        
+        sex = raw_input('gender M or F ')
+        if(sex == 'M' or sex == 'F):
+           break
+        print "sex should be in M or F"
+           
+    #this should come as dropdown menu      
     loc = raw_input('State you belongs to : pick one(Jammu & Kashmir, Punjab & Haryana, Rajasthan, Maharashtra, South India)(enter correct name) ')
-    nonveg = input('type 0 for veg and 1 for non-veg/veg')
+    while(1):
+        nonveg = input('type 0 for veg and 1 for both non-veg and veg')
+        if nonveg == 0 or nonveg == 1:
+           break
+        print 'enter correct value'
+           
     #to be change later according to the formula
     calories = 300
     #size = input('press 1 if you have any preference meal size?')
@@ -103,6 +119,10 @@ while next_day :
 
     if entry==1:
         user_id = input('enter the user_id ')
+        if user_id not in (new_user_feat['user_guid']):
+            print "enter the correct user_id"
+            continue
+            
         indexer = np.where(new_user_feat['user_guid']==user_id)[0]
         indexer = indexer[0]
         new_meal_size = main_recommend.main_recommendation(new_user_feat,user_feat,user_id)
