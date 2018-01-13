@@ -119,21 +119,21 @@ while(new_user):
     #print new_user_feat
     new_user_feat.to_csv('new_user_feat.csv',encoding='utf-8',index=False)
     print (user_name+" user is created")
-    new_user = input('press 1 to add another new user, 0 to continue with existing users')
-    #test
+    new_user = input('press 1 to add another new user, 0 to continue with existing users ')
+    
 
 next_day = 1;
 
 while next_day :
     while(1):
-        entry = input('type 1 if you want users recommendation or type 0 if it is next_day')
-        if entry==0 or entry==1:
+        entry = input('type 1 if you want users recommendation or type 0 if it is next_day ')
+        if (entry==0 or entry==1):
             break
         print ("enter 0 or 1 only")
 
     if entry==1:
-        #user_id = input('enter the user_id ')
-        print new_user_feat['user_guid'].values
+        user_id = input('enter the user_id ')
+        #print new_user_feat['user_guid'].values
         if user_id not in (new_user_feat['user_guid'].values):
             print ("enter the correct user_id between 500 and "+str(500-2+len(new_user_feat['user_guid'])))
             continue
@@ -141,8 +141,15 @@ while next_day :
         indexer = np.where(new_user_feat['user_guid']==user_id)[0]
         indexer = indexer[0]
         new_meal_size = main_recommend.main_recommendation(new_user_feat,user_feat,user_id)
-        #print new_meal_size
-        order = input('enter the dish number to order(only number not name) ')
+       
+        
+        
+        
+        ### Todo: order check
+        order = input('enter the dish number to order(only number,not name) ')
+            
+        
+        
         print ('your previous meal size was '+str(user_feat.loc[indexer,'previous_meal_size']))
         print ('rating of the previous meal was '+str(user_feat.loc[indexer,'meal_size_rating'])+' so based on that your todays meal size will be '+str(new_meal_size))
         user_feat.loc[indexer,'previous_meal_size'] = new_meal_size
@@ -163,8 +170,20 @@ while next_day :
 
         print ('your dish is ordered')
         # take feedback
-        taste_rate = input('please give rating on the basis of taste. 0 = bad, 1 = fine, 2 = good ')
-        quantity_rate = input('please give rating on the basis of quantity. 0 = was less, 1 = satisfied, 2 = leftover ')
+        
+        while(1):
+            taste_rate = input('please give rating on the basis of taste. 0 = bad, 1 = fine, 2 = good ')
+            if(taste_rate>=0 and taste_rate<=2):
+                break
+            print ("enter value between 0 to 2")
+            
+        while(1):    
+            quantity_rate = input('please give rating on the basis of quantity. 0 = was less, 1 = satisfied, 2 = leftover ')
+            if(quantity_rate>=0 and quantity_rate<=2):
+                break
+            print ("enter value between 0 to 2")
+        
+        
         #update feedback
         user_feat.loc[indexer,'meal_size_rating'] = quantity_rate
         user_feat.to_csv('user_features.csv',encoding='utf-8',index=False)
