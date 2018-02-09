@@ -77,40 +77,40 @@ def recommendation(user_group,user_id,non_recom_list,user_feat,spice_feat):
         recommend.append(new_spices2.loc[index_to_append,'food_id'])
     
     
-        for i in range(min(2,len(new_spices))):
+        for i in range(min(4,len(new_spices))):
             recommend.append(new_spices.index[i])
     
-        if(len(recommend)<3):
+        if(len(recommend)<5):
             other_state_spice = spice_feat[spice_feat['State'].isin(loc)==False]
     
             other_state_spice = other_state_spice.sort_values('count',ascending= [0])
             new_other_state = other_state_spice[~other_state_spice.index.isin(non_recom_list)]
 
-            if(len(new_other_state)>=(3-len(recommend))):
-                for i in range(3-len(recommend)):
+            if(len(new_other_state)>=(5-len(recommend))):
+                for i in range(5-len(recommend)):
                     recommend.append(new_other_state.index[i])
                     
-        if(len(recommend)<3):            
+        if(len(recommend)<5):            
             newlymade_spice = spice_feat.sort_values('count',ascending = [0])            
-            for i in range(3-len(recommend)):
+            for i in range(5-len(recommend)):
                 recommend.append(newlymade_spice.index[i])
             
     else:
         #print ('not random')
-        for i in range(min(3,len(new_spices))):
+        for i in range(min(5,len(new_spices))):
             recommend.append(new_spices.index[i])
     
-        if(len(recommend)<3):
+        if(len(recommend)<5):
             other_state_spice = spice_feat[spice_feat['State'].isin(loc)==False]
     
             other_state_spice = other_state_spice.sort_values('count',ascending= [0])
             new_other_state = other_state_spice[~other_state_spice.index.isin(non_recom_list)]
-            if(len(new_other_state)>=(3-len(recommend))):
-                for i in range(3-len(recommend)):
+            if(len(new_other_state)>=(5-len(recommend))):
+                for i in range(5-len(recommend)):
                     recommend.append(new_other_state.index[i])
-        if(len(recommend)<3):            
+        if(len(recommend)<5):            
             newlymade_spice = spice_feat.sort_values('count',ascending = [0])            
-            for i in range(3-len(recommend)):
+            for i in range(5-len(recommend)):
                 recommend.append(newlymade_spice.index[i])
     
     return recommend
@@ -118,7 +118,7 @@ def recommendation(user_group,user_id,non_recom_list,user_feat,spice_feat):
 
 def convert_list(row):
     #x = str(row['last_5_days_recommend'])
-    y = str(row['last_5_days_bought'])
+    y = str(row['last_6_days_bought'])
     #if isinstance(x,basestring):
     #    x = ast.literal_eval(x)
     if isinstance(y,basestring):
@@ -161,11 +161,11 @@ def change_type(x):
 
 
 def next_day_recommendation(user_feat,new_user_feat,spice_feat):        #,user_rating):
-    new_user_feat['last_5_days_recommend'] = new_user_feat.apply(lambda x: change_last_recommend(x['last_5_days_recommend'], x['recommends']), axis=1)
-    new_user_feat['last_5_days_bought'] = new_user_feat.apply(lambda x: change_last_recommend(x['last_5_days_bought'], x['bought']), axis=1)
+    new_user_feat['last_6_days_recommend'] = new_user_feat.apply(lambda x: change_last_recommend(x['last_6_days_recommend'], x['recommends']), axis=1)
+    new_user_feat['last_6_days_bought'] = new_user_feat.apply(lambda x: change_last_recommend(x['last_6_days_bought'], x['bought']), axis=1)
     new_user_feat['not_recommended'] = new_user_feat.apply(convert_list,axis=1)
-    print new_user_feat['last_5_days_recommend'][0]
-    print new_user_feat['last_5_days_bought'][0] 
+    print new_user_feat['last_6_days_recommend'][0]
+    print new_user_feat['last_6_days_bought'][0] 
     print new_user_feat['not_recommended'][0]
     user_group ,user_feat = clustering_based(user_feat)
     #spice = np.array(spice_feat.iloc[: ,0:4])
