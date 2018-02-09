@@ -112,8 +112,8 @@ while(new_user):
     #user_feat1 = pd.read_csv('user_features.csv')
     #user_feat = user_feat_preprocess(user_feat1) 
     
-    last5ayreco = [[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]]
-    recom = [0,0,0]
+    last5ayreco = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]
+    recom = [0,0,0,0,0]
     pastorder = pd.DataFrame([[user_guid,last5ayreco,last5ayreco,recom,recom,[0,0,0,0,0,0,0]]],columns=['user_guid','last_5_days_recommend','last_5_days_bought','recommends','bought','not_recommended'])
     new_user_feat = pd.concat([new_user_feat,pastorder],ignore_index=True)
     #print new_user_feat
