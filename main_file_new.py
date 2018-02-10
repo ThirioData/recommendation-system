@@ -3,7 +3,7 @@ import numpy as np
 from sklearn.cluster import KMeans
 import ast
 import itertools
-import main_recommend
+import main_recommend_new
 
 
 user_feat = pd.read_csv('user_features.csv')
